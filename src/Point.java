@@ -21,8 +21,8 @@ public class Point {
      * @return - return the distance of this point to the other point
      */
     public double distance(Point other) {
-        return (Math.pow(Math.abs(this.x - other.getX()),2)
-                *Math.pow(Math.abs(this.y - other.getY()),2))/2;
+        return Math.sqrt(Math.pow(Math.abs(this.x - other.getX()),2)
+                + Math.pow(Math.abs(this.y - other.getY()),2));
     }
     /**
      * check if the given point equals to the given point

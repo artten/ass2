@@ -34,7 +34,7 @@ public class Function {
     }
 
     public Point functionsInteract (Function other) {
-        double x = (other.getConstant() - this.constant)/(other.getSlope() - this.slope);
+        double x = (other.getConstant() - this.constant)/( this.slope - other.getSlope());
         if(getYbyX(x) == other.getYbyX(x)) {
             return new Point(x,getYbyX(x));
         }
