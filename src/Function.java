@@ -35,7 +35,13 @@ public class Function {
 
     public Point functionsInteract (Function other) {
         double x = (other.getConstant() - this.constant)/( this.slope - other.getSlope());
-        if(getYbyX(x) == other.getYbyX(x)) {
+        System.out.println("@@@@@@@@@@@@@@@@@@@");
+        System.out.println(x);
+        System.out.println(getYbyX(x));
+        System.out.println(other.getYbyX(x));
+        System.out.println(getYbyX(x) == other.getYbyX(x));
+        System.out.println("@@@@@@@@@@@@@@@@@@@");
+        if((int) (getYbyX(x) * 100000) == (int) (other.getYbyX(x) * 100000)) {
             return new Point(x,getYbyX(x));
         }
         return null;

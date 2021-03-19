@@ -84,6 +84,26 @@ public class Line {
         Function thisFunc = new Function(this.start, this.end);
         Function otherFunc = new Function(other.start, other.end);
         Point newPoint = thisFunc.functionsInteract(otherFunc);
+        if (newPoint != null){
+            System.out.println(xInTheLine(newPoint.getX()));
+            System.out.println(other.xInTheLine(newPoint.getX()));
+            System.out.println(newPoint.getX());
+            System.out.println(newPoint.getY());
+            System.out.print("this start ");
+            System.out.println(this.start.getX());
+            System.out.println(this.start.getY());
+            System.out.print("this func ");
+            System.out.println(thisFunc.getConstant());
+            System.out.println(thisFunc.getSlope());
+            System.out.print("other start ");
+            System.out.println(other.start.getX());
+            System.out.println(other.start.getY());
+            System.out.print("other func ");
+            System.out.println(otherFunc.getConstant());
+            System.out.println(otherFunc.getSlope());
+            System.out.println("#############################");
+
+        }
         if(newPoint != null && xInTheLine(newPoint.getX())
                 && other.xInTheLine(newPoint.getX())) {
             return true;
