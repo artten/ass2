@@ -24,8 +24,6 @@ public class SimpleGuiExample {
         Point[] points = new Point[NUM_LINE*NUM_LINE];
         int count = 0;
         for (int i = 0; i < NUM_LINE - 1; i++) {
-            System.out.print("i= ");
-            System.out.println(i);
             for (int j = i + 1; j < NUM_LINE ; j++){
                 if(lines[i].isIntersecting(lines[j])) {
                     points[count] = lines[i].intersectionWith(lines[j]);

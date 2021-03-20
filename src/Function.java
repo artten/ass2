@@ -1,46 +1,75 @@
 /**
- * @author yair koskas
- * one dimensional line
+ * @author 319339198
+ * linear Function
  */
 
 public class Function {
     private double slope;
     private double constant;
 
+    /**
+     * calculate the slope by two points
+     * @param one - one point on the function
+     * @param two - second point that the function contains
+     * @return the slope of the function
+     */
     private double slope(Point one, Point two) {
         return (one.getY() - two.getY())/(one.getX() - two.getX());
     }
 
+    /**
+     * calculate the constant by the slope and onr point
+     * @param one - point that contains x and y value
+     * @param slope - the slope of the function
+     * @return the constant of the function
+     */
     private double constant(Point one, double slope) {
         return (one.getY() - slope * one.getX());
     }
 
+    /**
+     * constructor
+     * @param one - one point of the function
+     * @param two - second point of the function
+     */
     public Function(Point one, Point two) {
         this.slope = slope(one, two);
         this.constant = constant(one, this.slope);
     }
 
-
+    /**
+     * return slope of the function
+     * @return the slope
+     */
     public double getSlope() {
         return  this.slope;
     }
 
+    /**
+     * return the constant of the function
+     * @return the constant
+     */
     public double getConstant(){
         return this.constant;
     }
 
+    /**
+     * return y value by x
+     * @param x - x value
+     * @return y value
+     */
     public double getYbyX(double x) {
         return x*this.slope + this.constant;
     }
 
+    /**
+     * check if there is a point where other function and this function
+     * interact
+     * @param other - another function
+     * @return a point that contains x and y value with the interaction value
+     */
     public Point functionsInteract (Function other) {
         double x = (other.getConstant() - this.constant)/( this.slope - other.getSlope());
-        System.out.println("@@@@@@@@@@@@@@@@@@@");
-        System.out.println(x);
-        System.out.println(getYbyX(x));
-        System.out.println(other.getYbyX(x));
-        System.out.println(getYbyX(x) == other.getYbyX(x));
-        System.out.println("@@@@@@@@@@@@@@@@@@@");
         if((int) (getYbyX(x) * 100000) == (int) (other.getYbyX(x) * 100000)) {
             return new Point(x,getYbyX(x));
         }
