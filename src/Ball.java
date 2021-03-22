@@ -1,8 +1,10 @@
 import biuoop.DrawSurface;
+import biuoop.GUI;
+import biuoop.Sleeper;
 
 public class Ball {
     private Point center;
-    private int radius;
+    private double radius;
     private java.awt.Color color;
     private Velocity velocity;
 
@@ -12,7 +14,7 @@ public class Ball {
      * @param r - radius of the ball
      * @param color - color of the ball
      */
-    public Ball(Point center, int r, java.awt.Color color) {
+    public Ball(Point center, double r, java.awt.Color color) {
         this.center = center;
         this.radius = r;
         this.color = color;
@@ -25,7 +27,7 @@ public class Ball {
      * @param r - radius of the ball
      * @param color - color of the ball
      */
-    public Ball(int x, int y, int r, java.awt.Color color) {
+    public Ball(double x, double y, double r, java.awt.Color color) {
         this.center = new Point(x,y);
         this.radius = r;
         this.color = color;
@@ -35,7 +37,7 @@ public class Ball {
      * get the x value of the ball
      * @return the x position of the ball
      */
-    public int getX(){
+    public double getX(){
         return (int) this.center.getX();
     }
 
@@ -43,7 +45,7 @@ public class Ball {
      * get the y value of the ball
      * @return the y position of the ball
      */
-    public int getY(){
+    public double getY(){
         return (int) this.center.getY();
     }
 
@@ -51,7 +53,7 @@ public class Ball {
      * get the radius of the ball
      * @return the radius of the ball
      */
-    public int getSize(){
+    public double getSize(){
         return this.radius;
     }
 
@@ -69,7 +71,7 @@ public class Ball {
      */
     public void drawOn(DrawSurface surface){
         surface.setColor(this.color);
-        surface.fillCircle((int) center.getX(), (int) center.getY(), radius);
+        surface.fillCircle((int) center.getX(), (int) center.getY(), (int) radius);
     }
 
     /**
@@ -101,6 +103,23 @@ public class Ball {
      * function that makes a move with a this ball
      */
     public void moveOneStep() {
-        this.center = this.getVelocity().applyToPoint(this.center);
+        if (this.velocity != null) {
+            this.center = this.getVelocity().applyToPoint(this.center);
+        }
     }
+
+    /**
+     * check if the ball should bounce and change velocity
+     * @param height - height of surface
+     * @param width - width of surface
+     */
+    public void checkBounce(int height, int width) {
+        if(width == center.getX() + radius || 0 == center.getX() - radius) {
+            velocity = new Velocity(-velocity.getDx(), velocity.getDy());
+        }
+        if(height == center.getY() + radius || 0 == center.getY() - radius) {
+            velocity = new Velocity(velocity.getDx(), -velocity.getDy());
+        }
+    }
+
 }

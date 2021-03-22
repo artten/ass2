@@ -13,8 +13,21 @@ public class Velocity {
         this.dy = dy;
     }
 
-    // Take a point with position (x,y) and return a new point
-    // with position (x+dx, y+dy)
+    /**
+     * get velocity x value
+     * @return this dx
+     */
+    public double getDx() {
+        return dx;
+    }
+
+    /**
+     * get velocity y value
+     * @return this dy
+     */
+    public double getDy() {
+        return dy;
+    }
 
     /**
      * add velocity to the point
