@@ -19,6 +19,7 @@ public class Velocity {
      * calculate the ball velocity by speed and angle.
      * @param angle - angle
      * @param speed - speed
+     * @return new velocity
      */
     public static Velocity fromAngleAndSpeed(double angle, double speed) {
         double dx = speed * Math.sin(angle);

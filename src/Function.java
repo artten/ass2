@@ -9,7 +9,7 @@ public class Function {
     private double constant;
 
     /**
-     * calculate the slope by two points
+     * calculate the slope by two points.
      * @param one - one point on the function
      * @param two - second point that the function contains
      * @return the slope of the function
@@ -19,25 +19,25 @@ public class Function {
             this.vertical = true;
             return 0;
         }
-        return (one.getY() - two.getY())/(one.getX() - two.getX());
+        return (one.getY() - two.getY()) / (one.getX() - two.getX());
     }
 
     /**
-     * calculate the constant by the slope and onr point
+     * calculate the constant by the slope and onr point.
      * @param one - point that contains x and y value
-     * @param slope - the slope of the function
+     * @param slopeValue - the slope of the function
      * @return the constant of the function
      */
-    private double constant(Point one, double slope) {
+    private double constant(Point one, double slopeValue) {
         if (vertical) {
             return one.getY();
         }
-        return (one.getY() - slope * one.getX());
+        return (one.getY() - slopeValue * one.getX());
     }
 
     /**
-     * constructor
-     * @param one - one point of the function
+     * constructor.
+     * @param one - one point of the function.
      * @param two - second point of the function
      */
     public Function(Point one, Point two) {
@@ -46,7 +46,7 @@ public class Function {
     }
 
     /**
-     * return slope of the function
+     * return slope of the function.
      * @return the slope
      */
     public double getSlope() {
@@ -54,15 +54,15 @@ public class Function {
     }
 
     /**
-     * return the constant of the function
+     * return the constant of the function.
      * @return the constant
      */
-    public double getConstant(){
+    public double getConstant() {
         return this.constant;
     }
 
     /**
-     * return y value by x
+     * return y value by x.
      * @param x - x value
      * @return y value
      */
@@ -70,11 +70,11 @@ public class Function {
         if (this.vertical) {
             return this.constant;
         }
-        return x*this.slope + this.constant;
+        return x * this.slope + this.constant;
     }
 
     /**
-     * return vertical value
+     * return vertical value.
      * @return vertical value
      */
     public boolean isVertical() {
@@ -82,21 +82,21 @@ public class Function {
     }
 
     /**
-     * check if there is a point where other function and this function
+     * check if there is a point where other function and this function.
      * interact
      * @param other - another function
      * @return a point that contains x and y value with the interaction value
      */
-    public Point functionsInteract (Function other) {
+    public Point functionsInteract(Function other) {
         if (this.vertical) {
-            return  new Point(this.constant,other.getYbyX(this.constant));
+            return  new Point(this.constant, other.getYbyX(this.constant));
         }
         if (other.isVertical()) {
-            return  new Point(other.getConstant(),getYbyX(other.getConstant()));
+            return  new Point(other.getConstant(), getYbyX(other.getConstant()));
         }
-        double x = (other.getConstant() - this.constant)/( this.slope - other.getSlope());
-        if((int) (getYbyX(x) * 100000) == (int) (other.getYbyX(x) * 100000)) {
-            return new Point(x,getYbyX(x));
+        double x = (other.getConstant() - this.constant) / (this.slope - other.getSlope());
+        if ((int) (getYbyX(x) * 100000) == (int) (other.getYbyX(x) * 100000)) {
+            return new Point(x, getYbyX(x));
         }
         return null;
     }

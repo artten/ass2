@@ -6,9 +6,9 @@ public class GeometryTester {
     final static double Comparison_threshold = 0.00001;
 
     /**
-     *
-     * @param a
-     * @param b
+     * blabla.
+     * @param a - sad
+     * @param b - dsa
      * @return
      */
     public static boolean doubleEquals(double a, double b) {
@@ -29,7 +29,7 @@ public class GeometryTester {
             System.out.println("Test p1.getX() failed.");
             mistake = true;
         }
-        if (!doubleEquals(p1.getY(),2)) {
+        if (!doubleEquals(p1.getY(), 2)) {
             System.out.println("Test p1.getY() failed.");
             mistake = true;
         }
@@ -41,7 +41,7 @@ public class GeometryTester {
             System.out.println("Test distance symmetry failed.");
             mistake = true;
         }
-        if (!doubleEquals(p1.distance(p2),5)) {
+        if (!doubleEquals(p1.distance(p2), 5)) {
             System.out.println("Test distance failed.");
             mistake = true;
         }
@@ -95,9 +95,7 @@ public class GeometryTester {
      */
     public static void main(String[] args) {
         GeometryTester tester = new GeometryTester();
-        if (tester.testPoint() && tester.testLine())
-            System.out.println("Test Completed Successfully!");
-        else
-            System.out.println("Found failing tests.");
+        if (tester.testPoint() && tester.testLine()) { System.out.println("Test Completed Successfully!"); }
+        else { System.out.println("Found failing tests."); }
     }
 }

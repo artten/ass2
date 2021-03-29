@@ -1,39 +1,42 @@
+/**
+ * @author 319339198
+ */
+
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
-
 import java.util.Random;
 
+/**
+ * make a surface with bouncing balls.
+ */
 public class MultipleBouncingBallsAnimation {
 
-    static int WIDTH = 200;
-    static int HEIGHT = 200;
-    static int MAX_RADIUS = 50;
+    static final int WIDTH = 200;
+    static final int HEIGHT = 200;
+    static final int MAX_RADIUS = 50;
 
     /**
-     * main function get 6 inputs and run animation
+     * main function get 6 inputs and run animation.
      * @param args - 6 parameters of radius to build balls
      */
     public static void main(String[] args) {
         if (args.length == 0) {
             return;
         }
-        //for (int i =0; i < 6 ;i++) {
-        //    BALLS[i] = makeNewBall(i  + 2 * i + 3);
-       // }
        Ball[] balls = new Ball[args.length];
-       for (int i =0; i < args.length; i++) {
+       for (int i = 0; i < args.length; i++) {
            balls[i] = makeNewBall(Double.parseDouble(args[i]));
         }
         drawAnimation(balls);
     }
 
     /**
-     * make a new ball with random place on a map
+     * make a new ball with random place on a map.
      * @param radius - the radius of the ball
      * @return ball with all needed parameters
      */
-    static private Ball makeNewBall(double radius) {
+    private static Ball makeNewBall(double radius) {
         Random rand = new Random();
         int startX = rand.nextInt(WIDTH) + 1;
         int startY = rand.nextInt(HEIGHT) + 1;
@@ -43,19 +46,19 @@ public class MultipleBouncingBallsAnimation {
     }
 
     /**
-     * return 1 or -1 or 0
+     * return 1 or -1 or 0.
      * @return 1 or -1 or 0
      */
-    static private int randomNegativeOrPositive() {
+    private static int randomNegativeOrPositive() {
         Random rand = new Random();
         return  rand.nextInt(1) - 1;
     }
 
     /**
-     * set a random velocity to a ball
+     * set a random velocity to a ball.
      * @param ball - the ball to set him velocity
      */
-    static private void setVelocityForBall(Ball ball) {
+    private static void setVelocityForBall(Ball ball) {
         if (ball.getSize() >= MAX_RADIUS) {
             ball.setVelocity(randomNegativeOrPositive() * 1,
                     randomNegativeOrPositive() * 1);
@@ -65,16 +68,17 @@ public class MultipleBouncingBallsAnimation {
     }
 
     /**
-     * draw the animation of the balls
+     * draw the animation of the balls.
+     * @param balls - all the balls
      */
-     private static void drawAnimation( Ball[] balls) {
+     private static void drawAnimation(Ball[] balls) {
         GUI gui = new GUI("title", WIDTH, HEIGHT);
         Sleeper sleeper = new Sleeper();
         while (true) {
             DrawSurface d = gui.getDrawSurface();
             for (Ball ball : balls) {
-                ball.moveOneStep(new Point(0,0), HEIGHT, WIDTH);
-                ball.checkBounce(new Point(0,0), HEIGHT, WIDTH);
+                ball.moveOneStep(new Point(0, 0), HEIGHT, WIDTH);
+                ball.checkBounce(new Point(0, 0), HEIGHT, WIDTH);
                 ball.drawOn(d);
             }
             gui.show(d);

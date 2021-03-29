@@ -1,5 +1,5 @@
 /**
- * @author yair koskas
+ * @author 319339198
  * one dimensional line
  */
 
@@ -8,7 +8,7 @@ public class Line {
     private Point end;
 
     /**
-     * constructor with given Points
+     * constructor with given Points.
      * @param start - point one to start from
      * @param end - point two to end with
      */
@@ -18,7 +18,7 @@ public class Line {
     }
 
     /**
-     * constructor given x and y value
+     * constructor given x and y value.
      * @param x1 - x value for point one
      * @param y1 - y value for point one
      * @param x2 - x value for point two
@@ -30,7 +30,7 @@ public class Line {
     }
 
     /**
-     * calculate the distance between start point and end point
+     * calculate the distance between start point and end point.
      * @return the distance between start point and end point
      */
     public double length() {
@@ -38,16 +38,16 @@ public class Line {
     }
 
     /**
-     * calculate the x and y value of a Point in the middle of start and end points
+     * calculate the x and y value of a Point in the middle of start and end points.
      * @return a Point in the middle of start and end points
      */
     public Point middle() {
-        return new Point((this.start.getX() + this.end.getX())/2,
-                            (this.end.getY() + this.start.getY())/2);
+        return new Point((this.start.getX() + this.end.getX()) / 2,
+                            (this.end.getY() + this.start.getY()) / 2);
     }
 
     /**
-     *  give the start point of the line
+     *  give the start point of the line.
      * @return  the start point of the line
      */
     public Point start() {
@@ -55,7 +55,7 @@ public class Line {
     }
 
     /**
-     *  give the end point of the line
+     *  give the end point of the line.
      * @return  the end point of the line
      */
     public Point end() {
@@ -63,7 +63,7 @@ public class Line {
     }
 
     /**
-     * check if x is in the line
+     * check if x is in the line.
      * @param x - the x value to check
      * @return true if x is in the line else return false
      */
@@ -76,7 +76,7 @@ public class Line {
     }
 
     /**
-     * check if the two line interact
+     * check if the two line interact.
      * @param other - another line to compare
      * @return true if the lines interact
      */
@@ -84,7 +84,7 @@ public class Line {
         Function thisFunc = new Function(this.start, this.end);
         Function otherFunc = new Function(other.start, other.end);
         Point newPoint = thisFunc.functionsInteract(otherFunc);
-        if(newPoint != null && xInTheLine(newPoint.getX())
+        if (newPoint != null && xInTheLine(newPoint.getX())
                 && other.xInTheLine(newPoint.getX())) {
             return true;
         }
@@ -92,12 +92,12 @@ public class Line {
     }
 
     /**
-     * retuen Point with the x and y value of the interaction
+     * return Point with the x and y value of the interaction.
      * @param other - line to check if this line interact with
      * @return Point with coordinates of the interaction
      */
     public Point intersectionWith(Line other) {
-        if(isIntersecting(other)){
+        if (isIntersecting(other)) {
             Function thisFunc = new Function(this.start, this.end);
             Function otherFunc = new Function(other.start, other.end);
             return thisFunc.functionsInteract(otherFunc);
@@ -106,7 +106,7 @@ public class Line {
     }
 
     /**
-     * return true is the lines are equal, false otherwise
+     * return true is the lines are equal, false otherwise.
      * @param other - other line to compare to
      * @return true is the lines are equal, false otherwise
      */
