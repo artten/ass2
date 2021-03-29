@@ -41,8 +41,8 @@ public class BouncingBallAnimation {
         Ball ball = new Ball(start.getX(), start.getY(), RADIUS, java.awt.Color.BLACK);
         ball.setVelocity(dx, dy);
         while (true) {
-            ball.moveOneStep();
-            ball.checkBounce(HEIGHT, WIDTH);
+            ball.moveOneStep(new Point(0,0), HEIGHT, WIDTH);
+            ball.checkBounce(new Point(0,0), HEIGHT, WIDTH);
             DrawSurface d = gui.getDrawSurface();
             ball.drawOn(d);
             gui.show(d);

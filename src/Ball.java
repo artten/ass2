@@ -99,12 +99,26 @@ public class Ball {
         return this.velocity;
     }
 
+
     /**
      * function that makes a move with a this ball
      */
-    public void moveOneStep() {
+    public void moveOneStep(Point start, int height, int width) {
         if (this.velocity != null) {
-            this.center = this.getVelocity().applyToPoint(this.center);
+            Point p = this.getVelocity().applyToPoint(this.center);
+            if ( p.getX() - radius - start.getX() < 0 ) {
+                p = new Point( start.getX() + radius, p.getY());
+            }
+            if ( p.getX() + radius > width + start.getX() ) {
+                p = new Point(width - radius + start.getX(), p.getY());
+            }
+            if ( p.getY() - radius - start.getX() < 0 ) {
+                p = new Point(p.getX(), radius + start.getY());
+            }
+            if ( p.getY() + radius > height + start.getX() ) {
+                p = new Point(p.getX(), height - radius +  start.getY());
+            }
+            this.center = p;
         }
     }
 
@@ -113,11 +127,11 @@ public class Ball {
      * @param height - height of surface
      * @param width - width of surface
      */
-    public void checkBounce(int height, int width) {
-        if(width == center.getX() + radius || 0 == center.getX() - radius) {
+    public void checkBounce(Point start, int height, int width) {
+        if(width == center.getX() + radius - start.getX() || 0 == center.getX() - radius - start.getX()) {
             velocity = new Velocity(-velocity.getDx(), velocity.getDy());
         }
-        if(height == center.getY() + radius || 0 == center.getY() - radius) {
+        if(height == center.getY() + radius - start.getY() || 0 == center.getY() - radius - start.getY()) {
             velocity = new Velocity(velocity.getDx(), -velocity.getDy());
         }
     }

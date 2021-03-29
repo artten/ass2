@@ -10,12 +10,14 @@ import java.awt.Color;
 /**
  * Draw Line with blue circle in the middle and red if intersection
  */
+
 public class AbstractArtDrawing {
     static final int NUM_LINE = 10; //number of line to draw
     static final int RADIUS = 3;
 
     /**
      * create NUM_LINE of random line
+     *
      * @return array of line with random lines
      */
     private Line[] makeTenRandomLines() {
@@ -26,7 +28,7 @@ public class AbstractArtDrawing {
             int y1 = rand.nextInt(300) + 1; // get integer in range 1-300
             int x2 = rand.nextInt(400) + 1; // get integer in range 1-400
             int y2 = rand.nextInt(300) + 1; // get integer in range 1-300
-            lines[i] = new Line(x1,y1,x2,y2);
+            lines[i] = new Line(x1, y1, x2, y2);
         }
         return lines;
     }

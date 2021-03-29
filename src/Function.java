@@ -4,6 +4,7 @@
  */
 
 public class Function {
+    private boolean vertical = false;
     private double slope;
     private double constant;
 
@@ -14,6 +15,10 @@ public class Function {
      * @return the slope of the function
      */
     private double slope(Point one, Point two) {
+        if (one.getX() - two.getX() == 0) {
+            this.vertical = true;
+            return 0;
+        }
         return (one.getY() - two.getY())/(one.getX() - two.getX());
     }
 
@@ -24,6 +29,9 @@ public class Function {
      * @return the constant of the function
      */
     private double constant(Point one, double slope) {
+        if (vertical) {
+            return one.getY();
+        }
         return (one.getY() - slope * one.getX());
     }
 
@@ -59,7 +67,18 @@ public class Function {
      * @return y value
      */
     public double getYbyX(double x) {
+        if (this.vertical) {
+            return this.constant;
+        }
         return x*this.slope + this.constant;
+    }
+
+    /**
+     * return vertical value
+     * @return vertical value
+     */
+    public boolean isVertical() {
+        return this.vertical;
     }
 
     /**
@@ -69,6 +88,12 @@ public class Function {
      * @return a point that contains x and y value with the interaction value
      */
     public Point functionsInteract (Function other) {
+        if (this.vertical) {
+            return  new Point(this.constant,other.getYbyX(this.constant));
+        }
+        if (other.isVertical()) {
+            return  new Point(other.getConstant(),getYbyX(other.getConstant()));
+        }
         double x = (other.getConstant() - this.constant)/( this.slope - other.getSlope());
         if((int) (getYbyX(x) * 100000) == (int) (other.getYbyX(x) * 100000)) {
             return new Point(x,getYbyX(x));

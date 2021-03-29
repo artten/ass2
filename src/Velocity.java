@@ -1,10 +1,12 @@
-// Velocity specifies the change in position on the `x` and the `y` axes.
+/**
+ * @author 319339198
+ */
 public class Velocity {
     private double dx;
     private double dy;
 
     /**
-     * constructor
+     * constructor.
      * @param dx - added x
      * @param dy - added y
      */
@@ -14,7 +16,18 @@ public class Velocity {
     }
 
     /**
-     * get velocity x value
+     * calculate the ball velocity by speed and angle.
+     * @param angle - angle
+     * @param speed - speed
+     */
+    public static Velocity fromAngleAndSpeed(double angle, double speed) {
+        double dx = speed * Math.sin(angle);
+        double dy = speed * Math.cos(angle);
+        return new Velocity(dx, dy);
+    }
+
+    /**
+     * get velocity x value.
      * @return this dx
      */
     public double getDx() {
@@ -22,7 +35,7 @@ public class Velocity {
     }
 
     /**
-     * get velocity y value
+     * get velocity y value.
      * @return this dy
      */
     public double getDy() {
@@ -30,11 +43,11 @@ public class Velocity {
     }
 
     /**
-     * add velocity to the point
+     * add velocity to the point.
      * @param p - point with x and y value
      * @return new point with added velocity
      */
-    public Point applyToPoint(Point p){
-        return new Point(p.getX() + dx,p.getY() + dy);
+    public Point applyToPoint(Point p) {
+        return new Point(p.getX() + dx, p.getY() + dy);
     }
 }
